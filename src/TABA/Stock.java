@@ -1,6 +1,8 @@
 package TABA;
 
 import java.io.Serializable;
+import java.util.Comparator;
+
 /**
  * ClassName: Stock
  * Description:
@@ -30,6 +32,74 @@ public class Stock implements Serializable {
     }
 
     public Stock() {
+    }
+
+
+    // static method return different comparator based on options
+    public static Comparator<Stock> getComparator(int option) {
+
+        switch (option){
+            case 1 -> {
+                return new Comparator<Stock>() {
+                    @Override
+                    public int compare(Stock o1, Stock o2) {
+                        return Integer.compare(o1.stock_no,o2.stock_no);
+                    }
+                };
+            }
+            case 2 -> {
+                return new Comparator<Stock>() {
+                    @Override
+                    public int compare(Stock o1, Stock o2) {
+                        return Double.compare(o1.product_size,o2.product_size);
+                    }
+                };
+
+            }
+            case 3 -> {
+                return new Comparator<Stock>() {
+                    @Override
+                    public int compare(Stock o1, Stock o2) {
+                        return Double.compare(o1.profit,o2.profit);
+                    }
+                };
+
+            }
+
+            case 4 -> {
+                return new Comparator<Stock>() {
+                    @Override
+                    public int compare(Stock o1, Stock o2) {
+                        return o1.product_type.compareTo(o2.product_type);
+                    }
+                };
+
+            }
+
+            case 5 -> {
+                return new Comparator<Stock>() {
+                    @Override
+                    public int compare(Stock o1, Stock o2) {
+                        return Double.compare(o1.weight,o2.weight);
+                    }
+                };
+
+            }
+
+            case 6 -> {
+                return new Comparator<Stock>() {
+                    @Override
+                    public int compare(Stock o1, Stock o2) {
+                        return o1.product_name.compareTo(o2.product_name);
+                    }
+                };
+
+            }
+            default -> {
+                throw new IllegalStateException("Invalid choice");
+            }
+
+        }
     }
 
     public int getStock_no() {
@@ -91,4 +161,7 @@ public class Stock implements Serializable {
                 ", product_name='" + product_name + '\'' +
                 '}';
     }
+
+
+    
 }
